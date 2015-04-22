@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+	 * 模块用来使一个单独的对象拥有公有/私有方法和变量，减少命名冲突。
+	*/
+	var testModule = function (argument) {
+		var privateParam = 1;
+		var privateFunc = function(){
+			privateParam++;
+		}
+		return {
+			publicFunc:function(){
+				console.log('hello,i am public func');
+				privateParam++;
+				console.log('the pravite variable now is = '+privateParam);
+				privateFunc();
+				console.log('after i call the privateFunc the variable is = '+privateParam);
+			},
+			publicParam:function(){
+				console.log('i am a public variable')
+			}
+		}
+	}();
+	var testModule2 = function (argument) {
+		console.log('init testModule2')
+		function prepareWord(word){
+			return word;
+		}
+		function readWord(word){
+			console.log(word)
+		}
+		/*
+		 * 构造器（new 方法调用）在初次创建时设置成员和方法的值
+		*/
+		function constructor(){
+			//确保该函数作为构造函数调用
+			if(!(this instanceof constructor)){
+				console.log('not from new')
+				return new constructor(sayWhat);
+			}
+			console.log('new testModule2')
+			//命令模式：分离职责，用简单的命令，执行一连串的操作。。。。
+			this.say = function(sayWhat){
+				return readWord(prepareWord(sayWhat));
+			}
+		}
+		constructor.prototype.sayHello = function(){
+			console.log('hello by prototype');
+		}
+		return constructor;
+	}();
+	var son = 
+	</script>
+</body>
+</html>
