@@ -6,18 +6,22 @@
 	<link rel="stylesheet" href="style/css/clip-path.css">
 </head>
 <body>
-	<section class="demos">
-	  <div class="triangle"></div>
-	  <div class="circle"></div>
-	  <div class="ellipse"></div>
-	  <div class="inset"></div>
-	  <div class="heart"></div>
-	</section>
+	  <button id="step">下一步</button>
 	  <button id="change">碎片化</button>
 	  <button id="color">变色</button>
 	  <button id="combo">美少鱼变身</button>
+	<section class="demos">
+	  <div class="triangle" style="display:none"></div>
+	  <div class="circle" style="display:none"></div>
+	  <div class="ellipse" style="display:none"></div>
+	  <div class="inset" style="display:none"></div>
+	  <div class="heart" style="display:none"></div>
+	</section>
 	<section class="logo">
-	  <div class="fish">
+	  <div style="display:none">
+	  	<img src="img/clippath/fish.bmp" alt="">
+	  </div>
+	  <div class="fish" style="display:none">
 	  	<div class="clip fish orange"></div>
 	  	<div class="clip fish orange"></div>
 	  	<div class="clip fish orange"></div>
@@ -43,9 +47,11 @@
 	</section>
 	<script>
 	var clip = document.querySelectorAll('.clip')
+	var show = document.querySelectorAll('section > div')
 	var button1  = document.getElementById('change');
 	var button2  = document.getElementById('color');
 	var button3 = document.getElementById('combo');
+	var button4 = document.getElementById('step');
 	function chip (argument) {
 		for(var length = clip.length;length--;){
 			if(clip[length].className.indexOf('chip')!==-1){
@@ -76,6 +82,10 @@
 				changeColor();chip();
 			},500)
 		},500);
+	});
+	var i = 0;
+	button4.addEventListener('click',function () {
+		show[i++].style.display = 'block';
 	});
 	</script>
 </body>

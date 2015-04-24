@@ -2,7 +2,7 @@
   width: 80px;
   height: 50px;
   margin: 5px;
-  background: url("../../img/clippath/fish.bmp") center center no-repeat;
+  background: url("../../img/clippath/view.jpg") center center no-repeat;
   background-size: cover; }
 .demos .triangle {
   -webkit-clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
@@ -139,39 +139,39 @@
   .logo .clip.green:nth-child(17) {
     background: #65ba04; }
   .logo .clip.fish.chip:nth-child(1) {
-    -webkit-clip-path: polygon(24% 34%, 26% 29%, 30% 29%); }
+    -webkit-clip-path: polygon(24% 38%, 29% 27%, 33% 33%); }
   .logo .clip.fish.chip:nth-child(2) {
-    -webkit-clip-path: polygon(29% 51%, 31% 85%, 37% 42%); }
+    -webkit-clip-path: polygon(29% 64%, 31% 99%, 40% 40%); }
   .logo .clip.fish.chip:nth-child(3) {
-    -webkit-clip-path: polygon(17% 63%, 33% 65%, 16% 67%); }
+    -webkit-clip-path: polygon(17% 56%, 21% 59%, 16% 75%); }
   .logo .clip.fish.chip:nth-child(4) {
-    -webkit-clip-path: polygon(17% 111%, 23% 118%, 17% 75%); }
+    -webkit-clip-path: polygon(17% 119%, 20% 64%, 17% 88%); }
   .logo .clip.fish.chip:nth-child(5) {
-    -webkit-clip-path: polygon(25% 176%, 30% 101%, 25% 77%); }
+    -webkit-clip-path: polygon(25% 98%, 30% 82%, 28% 85%); }
   .logo .clip.fish.chip:nth-child(6) {
-    -webkit-clip-path: polygon(63% 200%, 51% 157%, 70% 97%); }
+    -webkit-clip-path: polygon(62% 202%, 58% 197%, 60% 184%); }
   .logo .clip.fish.chip:nth-child(7) {
-    -webkit-clip-path: polygon(75% 121%, 67% 92%, 50% 105%); }
+    -webkit-clip-path: polygon(73% 105%, 53% 184%, 97% 152%); }
   .logo .clip.fish.chip:nth-child(8) {
-    -webkit-clip-path: polygon(69% 99%, 83% 110%, 99% 149%); }
+    -webkit-clip-path: polygon(75% 151%, 90% 91%, 84% 159%); }
   .logo .clip.fish.chip:nth-child(9) {
-    -webkit-clip-path: polygon(66% 95%, 81% 140%, 65% 98%); }
+    -webkit-clip-path: polygon(63% 93%, 113% 83%, 78% 77%); }
   .logo .clip.fish.chip:nth-child(10) {
-    -webkit-clip-path: polygon(126% 60%, 116% 58%, 82% 62%); }
+    -webkit-clip-path: polygon(74% 65%, 94% 105%, 66% 85%); }
   .logo .clip.fish.chip:nth-child(11) {
-    -webkit-clip-path: polygon(62% 49%, 59% 44%, 80% 41%); }
+    -webkit-clip-path: polygon(120% 49%, 73% 51%, 67% 66%); }
   .logo .clip.fish.chip:nth-child(12) {
-    -webkit-clip-path: polygon(68% 41%, 66% 28%, 109% 30%); }
+    -webkit-clip-path: polygon(92% 45%, 86% 28%, 68% 32%); }
   .logo .clip.fish.chip:nth-child(13) {
-    -webkit-clip-path: polygon(61% 34%, 51% 20%, 61% 21%); }
+    -webkit-clip-path: polygon(61% 30%, 54% 20%, 81% 24%); }
   .logo .clip.fish.chip:nth-child(14) {
-    -webkit-clip-path: polygon(70% 13%, 81% 11%, 103% 14%); }
+    -webkit-clip-path: polygon(57% 13%, 94% 11%, 93% 16%); }
   .logo .clip.fish.chip:nth-child(15) {
-    -webkit-clip-path: polygon(96% 57%, 176% 41%, 110% 70%); }
+    -webkit-clip-path: polygon(146% 39%, 88% 39%, 166% 90%); }
   .logo .clip.fish.chip:nth-child(16) {
-    -webkit-clip-path: polygon(99% 61%, 105% 68%, 145% 55%); }
+    -webkit-clip-path: polygon(97% 63%, 102% 143%, 87% 66%); }
   .logo .clip.fish.chip:nth-child(17) {
-    -webkit-clip-path: polygon(86% 83%, 123% 87%, 143% 84%); }
+    -webkit-clip-path: polygon(175% 188%, 97% 157%, 114% 92%); }
   .logo .clip {
     -webkit-transition: -webkit-clip-path ease-out .5s,background ease-out .5s; }
   .logo .clip.fish.white {
