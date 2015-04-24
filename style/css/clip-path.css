@@ -1,0 +1,107 @@
+.demos div {
+  width: 80px;
+  height: 50px;
+  margin: 5px;
+  background: url("../../img/clippath/fish.bmp") center center no-repeat;
+  background-size: cover; }
+.demos .triangle {
+  -webkit-clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
+.demos .circle {
+  -webkit-clip-path: circle(40% at 50% 50%); }
+.demos .ellipse {
+  -webkit-clip-path: ellipse(50% 50% at 50% 50%); }
+.demos .inset {
+  -webkit-clip-path: inset(0% 0% 0% 0% round 50% 20% 15px 20px); }
+.demos .heart {
+  transition: -webkit-clip-path 500ms ease-out;
+  -webkit-clip-path: polygon(37.5% 0%, 50% 20%, 37.5% 40%, 62.5% 60%, 50% 100%, 50% 100%, 62.5% 60%, 37.5% 40%, 50% 20%, 62.5% 0%, 80% 20%, 80% 60%, 50% 100%, 50% 100%, 20% 60%, 20% 20%); }
+.demos .heart:hover {
+  -webkit-clip-path: polygon(27.5% 0%, 40% 20%, 27.5% 40%, 52.5% 60%, 40% 100%, 60% 100%, 72.5% 60%, 47.5% 40%, 60% 20%, 72.5% 0%, 90% 20%, 90% 60%, 60% 100%, 40% 100%, 10% 60%, 10% 20%); }
+
+.logo {
+  position: relative; }
+  .logo .fish {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 299px;
+    height: 241px;
+    border: black solid 1px; }
+  .logo .clip {
+    position: absolute;
+    width: 299px;
+    height: 241px;
+    left: 0;
+    top: 0;
+    width: 299px;
+    height: 241px;
+    box-sizing: border-box; }
+  .logo .clip:nth-child(1) {
+    background: #ff8b10;
+    -webkit-clip-path: polygon(8% 36%, 26% 15%, 39% 31%); }
+  .logo .clip:nth-child(2) {
+    background: #ff7b0a;
+    -webkit-clip-path: polygon(8% 36%, 39% 55%, 39% 31%); }
+  .logo .clip:nth-child(3) {
+    background: #ff7608;
+    -webkit-clip-path: polygon(8% 36%, 39% 55%, 3% 58%); }
+  .logo .clip:nth-child(4) {
+    background: #ff7106;
+    -webkit-clip-path: polygon(9% 80%, 39% 55%, 3% 58%); }
+  .logo .clip:nth-child(5) {
+    background: #ff6c04;
+    -webkit-clip-path: polygon(9% 80%, 39% 55%, 27% 92%); }
+  .logo .clip:nth-child(6) {
+    background: #fc5500;
+    -webkit-clip-path: polygon(40% 97%, 40% 75%, 63% 90%); }
+  .logo .clip:nth-child(7) {
+    background: #ff6301;
+    -webkit-clip-path: polygon(46% 63%, 40% 75%, 63% 90%); }
+  .logo .clip:nth-child(8) {
+    background: #fd5901;
+    -webkit-clip-path: polygon(46% 63%, 72% 73%, 63% 90%); }
+  .logo .clip:nth-child(9) {
+    background: #ff6a04;
+    -webkit-clip-path: polygon(46% 63%, 72% 73%, 50% 48%); }
+  .logo .clip:nth-child(10) {
+    background: #ff6a05;
+    -webkit-clip-path: polygon(73% 32%, 72% 73%, 50% 48%); }
+  .logo .clip:nth-child(11) {
+    background: #ff7c0a;
+    -webkit-clip-path: polygon(73% 32%, 46% 29%, 50% 48%); }
+  .logo .clip:nth-child(12) {
+    background: #fe7e0c;
+    -webkit-clip-path: polygon(73% 32%, 46% 29%, 64% 18%); }
+  .logo .clip:nth-child(13) {
+    background: #ff890f;
+    -webkit-clip-path: polygon(46% 29%, 37% 11%, 64% 18%); }
+  .logo .clip:nth-child(14) {
+    background: #fe840e;
+    -webkit-clip-path: polygon(42% 13%, 57% 2%, 64% 18%); }
+  .logo .clip:nth-child(15) {
+    background: #fe7208;
+    -webkit-clip-path: polygon(73% 32%, 89% 26%, 95% 53%); }
+  .logo .clip:nth-child(16) {
+    background: #ff6b04;
+    -webkit-clip-path: polygon(73% 32%, 72% 73%, 95% 53%); }
+  .logo .clip:nth-child(17) {
+    background: #fc5601;
+    -webkit-clip-path: polygon(88% 78%, 72% 73%, 95% 53%); }
+  .logo .clip.white {
+    background: linear-gradient(to bottom, #fff, #ffdc91);
+    -webkit-clip-path: polygon(26% 15%, 39% 31%, 39% 55%, 27% 92%, 40% 97%, 40% 75%, 46% 63%, 50% 48%, 46% 29%, 37% 11%, 26% 15%); }
+  .logo .clip.eye {
+    background: #fff;
+    -webkit-clip-path: circle(11% at 20% 47%); }
+  .logo .clip.sight {
+    background: #000;
+    -webkit-clip-path: circle(5.5% at 16% 47%); }
+  .logo .clip.shiny {
+    background: #fff;
+    -webkit-clip-path: circle(1.5% at 14.5% 46.5%); }
+
+@-webkit-keyframes cloudy {
+  50% {
+    -webkit-transform: translate3d(0, -10px, 0); } }
+
+/*# sourceMappingURL=clip-path.css.map */

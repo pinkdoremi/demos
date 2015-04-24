@@ -9,11 +9,58 @@
 	/*
 	 * 模块用来使一个单独的对象拥有公有/私有方法和变量，减少命名冲突。
 	*/
-	var testModule = function (argument) {
+	var humanMaker = function (argument) {
 		var privateParam = 1;
 		var privateFunc = function(){
 			privateParam++;
 		}
+		var factory = function(name){
+			if(name == 'Fathor'){
+				return new Fathor();
+			}else if (name == 'Son'){
+				return new Son();
+			}else if (name == 'Daughtor'){
+				return new Daughtor;
+			}
+		}
+		function Fathor(){
+			//使用共享原型来继承的（Son）会导致：此处不被调用
+			this.name = 'fathor';
+		}
+		//出于继承的目的：任何值得继承的东西（可复用的东西）应该放在原型中实现
+		Fathor.prototype.getWord = function(){
+				return this.name;
+		}
+		function Son(){
+			//此处只会出现一次this.name 的赋值。
+			this.name = 'son';
+		}
+		/*
+		*	共享原型继承+临时构造函数
+		 */
+		function inherit(Son,Fathor){
+			//临时构造函数:防止子对象对原型的修改影响到所有父对象
+			var bridge = function (){};
+			bridge.prototype = Fathor.prototype;
+			Son.prototype = new bridge();
+			//重置构造函数到自己，否则就到Father上了
+			Son.prototype.constructor = Son;
+		}
+		inherit(Son,Fathor);
+		/*
+		*	借用构造函数继承
+		*	这种继承方式不好
+		 */
+		function Daughtor(){
+			//此处会重复调用到Father的this.name = 'fathor'
+			Fathor.call(this);
+			this.name = 'daughtor';
+		}
+		/*
+		*	借用构造函数+设置原型
+		*	使用借用构造函数继承的（Daughter）会继承不到原型的方法，此时要设置原型
+		 */
+		Daughtor.prototype = Fathor.prototype;
 		return {
 			publicFunc:function(){
 				console.log('hello,i am public func');
@@ -24,28 +71,34 @@
 			},
 			publicParam:function(){
 				console.log('i am a public variable')
-			}
+			},
+			factory:factory
 		}
 	}();
-	var testModule2 = function (argument) {
-		console.log('init testModule2')
+	var mouse = function (argument) {
+		console.log('init mouse')
 		function prepareWord(word){
+			console.log('Thinking what to say...')
 			return word;
 		}
 		function readWord(word){
-			console.log(word)
+			console.log('I say:'+word)
 		}
 		/*
 		 * 构造器（new 方法调用）在初次创建时设置成员和方法的值
 		*/
-		function constructor(){
+		function constructor(sayWhat){
 			//确保该函数作为构造函数调用
 			if(!(this instanceof constructor)){
-				console.log('not from new')
+				console.log('constructed not from “new ()”')
 				return new constructor(sayWhat);
 			}
-			console.log('new testModule2')
-			//命令模式：分离职责，用简单的命令，执行一连串的操作。。。。
+			console.log('now I am in new constructor')
+			/*
+			 * facade模式：暴露有限的接口，把复杂的实现隐藏在。。深处，用户不会接触到。提高可用性。子系统的组件变化不会影响到它的客户。（api常见）
+			 * 
+			 * 命令模式：分离职责，用简单的命令，执行一连串的操作。。实现解耦（调用的地方&具体操作）。
+			*/
 			this.say = function(sayWhat){
 				return readWord(prepareWord(sayWhat));
 			}
@@ -55,7 +108,20 @@
 		}
 		return constructor;
 	}();
-	var son = 
+		console.log('code:mouse()')
+	var bigMouse = mouse();
+		console.log('code:humanMaker.factory("Fathor")');
+	var person1 = humanMaker.factory('Fathor');
+		console.log('code:bigMouse.say()');
+	bigMouse.say('person1 says:'+person1.getWord());
+		console.log('code:humanMaker.factory("Son")');
+	var person2 = humanMaker.factory('Son');
+		console.log('code:bigMouse.say()');
+	bigMouse.say('person2 says:'+person2.getWord());
+		console.log('code:humanMaker.factory("Daughtor")');
+	var person3 = humanMaker.factory('Daughtor');
+		console.log('code:bigMouse.say()');
+	bigMouse.say('person3 says:'+person3.getWord());
 	</script>
 </body>
 </html>
