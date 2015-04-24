@@ -1,0 +1,119 @@
+$imgUrl: "../../img/clippath/view.jpg";
+.demos{
+  div{
+    width:80px;
+    height:50px;
+    margin:5px;
+    background:url($imgUrl) center center no-repeat;
+    background-size:cover;
+  }
+  .triangle{
+    -webkit-clip-path:polygon(50% 0%,100% 100%,0% 100%);
+  }
+  .circle{
+    -webkit-clip-path:circle(40% at 50% 50%);
+  }
+  .ellipse{
+    -webkit-clip-path:ellipse(50% 50% at 50% 50%)
+  }
+  .inset{
+    -webkit-clip-path:inset(0% 0% 0% 0% round  50% 20% 15px 20px);
+  }
+  .heart{
+    transition:-webkit-clip-path 500ms ease-out;
+    -webkit-clip-path:polygon(37.5% 0%,50% 20%,37.5% 40%,62.5% 60%,50% 100%,50% 100%,62.5% 60%,37.5% 40%,50% 20%,62.5% 0%,80% 20%,80% 60%,50% 100%,50% 100%,20% 60%,20% 20%)
+  }
+  .heart:hover{
+      -webkit-clip-path:polygon(27.5% 0%,40% 20%,27.5% 40%,52.5% 60%,40% 100%,60% 100%,72.5% 60%,47.5% 40%,60% 20%,72.5% 0%,90% 20%,90% 60%,60% 100%,40% 100%,10% 60%,10% 20%)
+  }
+}
+.logo{
+  position:relative;
+  .fish{
+    position:absolute;
+    left:0;
+    top:0;
+    width:299px;
+    height:241px;
+    border:black solid 1px;
+  }
+  .clip{
+    position:absolute;
+    width:299px;
+    height:241px;
+    left:0;
+    top:0;
+    width:299px;
+    height:241px;
+    box-sizing:border-box;
+  }
+  $point:(8% 36%)(26% 15%)(39% 31%)(39% 55%)(3% 58%)(9% 80%)(27% 92%)(40% 97%)(37% 11%)(57% 2%)(42% 13%)(64% 18%)(46% 29%)(50% 48%)(46% 63%)(40% 75%)(63% 90%)(72% 73%)(88% 78%)(73% 32%)(89% 26%)(95% 53%);
+  $trai:(nth($point,1),nth($point,2),nth($point,3))(nth($point,1),nth($point,4),nth($point,3))(nth($point,1),nth($point,4),nth($point,5))(nth($point,6),nth($point,4),nth($point,5))(nth($point,6),nth($point,4),nth($point,7))(nth($point,8),nth($point,16),nth($point,17))(nth($point,15),nth($point,16),nth($point,17))(nth($point,15),nth($point,18),nth($point,17))(nth($point,15),nth($point,18),nth($point,14))(nth($point,20),nth($point,18),nth($point,14))(nth($point,20),nth($point,13),nth($point,14))(nth($point,20),nth($point,13),nth($point,12))(nth($point,13),nth($point,9),nth($point,12))(nth($point,11),nth($point,10),nth($point,12))(nth($point,20),nth($point,21),nth($point,22))(nth($point,20),nth($point,18),nth($point,22))(nth($point,19),nth($point,18),nth($point,22));
+  $colorOrange:#ff8b10 #ff7b0a #ff7608 #ff7106 #ff6c04 #fc5500 #ff6301 #fd5901 #ff6a04 #ff6a05 #ff7c0a #fe7e0c #ff890f #fe840e #fe7208 #ff6b04 #fc5601;
+  $colorGreen:#84d51b #7fd015 #7ed015 #77c907 #6fc307 #61b501 #71c406 #65ba03 #75c70a #74c60a #7ccd12 #7ccd12 #7ccd12 #7ccd12 #6cc00b #75c80b #65ba04;
+  @for $i from 1 through 17{
+    .clip.fish:nth-child(#{$i}){
+      -webkit-clip-path: polygon(nth($trai,$i));
+    }
+  }
+  @for $i from 1 through 17{
+    .clip.orange:nth-child(#{$i}){
+      background:nth($colorOrange,$i);
+    }
+  }
+  @for $i from 1 through 17{
+    .clip.green:nth-child(#{$i}){
+      background:nth($colorGreen,$i);
+    }
+  }
+  @function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  $trai2:$trai;
+  @for $i from 1 through 17{
+    $triangle:nth($trai2,$i);
+    $XY1:nth($triangle,1);
+    $XY2:nth($triangle,2);
+    $XY3:nth($triangle,3);
+    $gravite:(nth($XY1,1)+nth($XY2,1)+nth($XY3,1))/3 (nth($XY1,2)+nth($XY2,2)+nth($XY3,2))/3;
+    @for $j from 1 through 3{
+      $XY:nth($triangle,$j);
+      $X:nth($XY,1);
+      $Y:nth($XY,2);
+      $X:floor(nth($gravite,1)+$X*strip-units($X)/8000*random(99));
+      $Y:floor(nth($gravite,2)+$Y*strip-units($Y)/5000*random(99));
+      $triangle:set-nth($list:$triangle,$n: $j,$value:($X $Y));
+    }
+    $trai2:set-nth($list:$trai2,$n: $i,$value:$triangle)
+  }
+  @for $i from 1 through 17{
+    .clip.fish.chip:nth-child(#{$i}){
+      -webkit-clip-path: polygon(nth($trai2,$i));
+    }
+  }
+  .clip{
+    -webkit-transition:-webkit-clip-path ease-out .5s,background ease-out .5s;
+  }
+  .clip.fish.white{
+    background:linear-gradient(to bottom,#fff,#ffdc91);
+    -webkit-clip-path: polygon(nth($point,2),nth($point,3),nth($point,4),nth($point,7),nth($point,8),nth($point,16),nth($point,15),nth($point,14),nth($point,13),nth($point,9),nth($point,2));
+  }
+  .clip.fish.eye{
+    background:#fff;
+    -webkit-clip-path: circle(11% at 20% 47%);
+  }
+  .clip.fish.sight{
+    background:#000;
+    -webkit-clip-path: circle(5.5% at 16% 47%);
+  }
+  .clip.fish.shiny{
+    background:#fff;
+    -webkit-clip-path: circle(1.5% at 14.5% 46.5%);
+  }
+  .clip.white.chip,.clip.chip.eye,.clip.chip.sight,.clip.chip.shiny{
+    background: rgba(255,255,255,0);
+  }
+}
+@-webkit-keyframes cloudy {
+  50% { -webkit-transform: translate3d(0,-10px,0);}
+}
