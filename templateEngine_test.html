@@ -15,6 +15,7 @@
 		<script src="./js/templateEngine_test/t.js"></script>
 		<script src="./js/templateEngine_test/baiduTemplate.js"></script>
 		<script src="./js/templateEngine_test/nunjucks.js"></script>
+		<script src="./js/templateEngine_test/vue.js"></script>
 		<script src="./js/zepto.js"></script>
 		<script></script>
 	</head>
@@ -740,6 +741,62 @@
 					}
 				</script>
 			</article>
+			<article data-template="Vuejs" class="oneTemplate">
+				<header>Vuejs<a href="https://github.com/yyx990803/vue" class="font github"></a></header>
+				<div class="renderArea" id="Vuejs">
+					<h4>编码输出:</h4>
+					<p>{{encode}}</p>
+					<h4>不编码输出:</h4>
+					<p v-html="encode"></p>
+					<h4>条件非:</h4>
+					<p>条件非ok</p>
+					<ul>数组:
+						<li v-repeat="object.list">{{$value}}</li>
+					</ul>
+					<ul>对象数组:
+						<li v-repeat="object.list">{{name}}</li>
+					</ul>
+				</div>
+				<div class="buttons">
+					<button class="render">渲染</button>
+				</div>
+				<details>
+				<summary>更多</summary>
+				<ul>详细参数
+					<li>大小:57KB</li>
+					<li>最后更新:2 days ago</li>
+					<li>star:4170</li>
+					<li>测试结果1次：1ms</li>
+				</ul>
+				<ul>支持列表
+					<li>支持各种。。。</li>
+				</ul>
+				<ul>评价：
+					<li>Google的人写的</li>
+					<li>支持双向绑定</li>
+					<li>语法赞</li>
+					<li>就是有点大，可能适合单页面应用</li>
+				</ul>
+				</details>
+				<script>
+					function goVuejsRender(isN){
+						var tpl = document.getElementById('Vuejs').innerHTML;
+						goVuejsRender = function(isN){
+							var n = isN?RENDER_TIMES:1;
+							var startTime = new Date();
+							while(n--){
+								new Vue({
+								  el: '#Vuejs',
+								  data: data
+								});
+							}
+							var endRender = new Date();
+							console.log('编译+渲染时间：'+(endRender-startTime)+'ms');
+						}
+						goVuejsRender(isN);
+					}
+				</script>
+			</article>
 		</section>
 		<script>
 		var data = {
@@ -783,6 +840,7 @@
 				case 'tjs':goTJsRender(isN);return;
 				case 'baiduTemplate':goBaiduTemplateRender(isN);return;
 				case 'Nunjucks':goNunjucksRender(isN);return;
+				case 'Vuejs':goVuejsRender(isN);return;
 				default:console.log('no such template?!GOD!!!')
 			}
 		}

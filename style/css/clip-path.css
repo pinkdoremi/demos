@@ -36,69 +36,158 @@
     width: 299px;
     height: 241px;
     box-sizing: border-box; }
-  .logo .clip:nth-child(1) {
-    background: #ff8b10;
+  .logo .clip.fish:nth-child(1) {
     -webkit-clip-path: polygon(8% 36%, 26% 15%, 39% 31%); }
-  .logo .clip:nth-child(2) {
-    background: #ff7b0a;
+  .logo .clip.fish:nth-child(2) {
     -webkit-clip-path: polygon(8% 36%, 39% 55%, 39% 31%); }
-  .logo .clip:nth-child(3) {
-    background: #ff7608;
+  .logo .clip.fish:nth-child(3) {
     -webkit-clip-path: polygon(8% 36%, 39% 55%, 3% 58%); }
-  .logo .clip:nth-child(4) {
-    background: #ff7106;
+  .logo .clip.fish:nth-child(4) {
     -webkit-clip-path: polygon(9% 80%, 39% 55%, 3% 58%); }
-  .logo .clip:nth-child(5) {
-    background: #ff6c04;
+  .logo .clip.fish:nth-child(5) {
     -webkit-clip-path: polygon(9% 80%, 39% 55%, 27% 92%); }
-  .logo .clip:nth-child(6) {
-    background: #fc5500;
+  .logo .clip.fish:nth-child(6) {
     -webkit-clip-path: polygon(40% 97%, 40% 75%, 63% 90%); }
-  .logo .clip:nth-child(7) {
-    background: #ff6301;
+  .logo .clip.fish:nth-child(7) {
     -webkit-clip-path: polygon(46% 63%, 40% 75%, 63% 90%); }
-  .logo .clip:nth-child(8) {
-    background: #fd5901;
+  .logo .clip.fish:nth-child(8) {
     -webkit-clip-path: polygon(46% 63%, 72% 73%, 63% 90%); }
-  .logo .clip:nth-child(9) {
-    background: #ff6a04;
+  .logo .clip.fish:nth-child(9) {
     -webkit-clip-path: polygon(46% 63%, 72% 73%, 50% 48%); }
-  .logo .clip:nth-child(10) {
-    background: #ff6a05;
+  .logo .clip.fish:nth-child(10) {
     -webkit-clip-path: polygon(73% 32%, 72% 73%, 50% 48%); }
-  .logo .clip:nth-child(11) {
-    background: #ff7c0a;
+  .logo .clip.fish:nth-child(11) {
     -webkit-clip-path: polygon(73% 32%, 46% 29%, 50% 48%); }
-  .logo .clip:nth-child(12) {
-    background: #fe7e0c;
+  .logo .clip.fish:nth-child(12) {
     -webkit-clip-path: polygon(73% 32%, 46% 29%, 64% 18%); }
-  .logo .clip:nth-child(13) {
-    background: #ff890f;
+  .logo .clip.fish:nth-child(13) {
     -webkit-clip-path: polygon(46% 29%, 37% 11%, 64% 18%); }
-  .logo .clip:nth-child(14) {
-    background: #fe840e;
+  .logo .clip.fish:nth-child(14) {
     -webkit-clip-path: polygon(42% 13%, 57% 2%, 64% 18%); }
-  .logo .clip:nth-child(15) {
-    background: #fe7208;
+  .logo .clip.fish:nth-child(15) {
     -webkit-clip-path: polygon(73% 32%, 89% 26%, 95% 53%); }
-  .logo .clip:nth-child(16) {
-    background: #ff6b04;
+  .logo .clip.fish:nth-child(16) {
     -webkit-clip-path: polygon(73% 32%, 72% 73%, 95% 53%); }
-  .logo .clip:nth-child(17) {
-    background: #fc5601;
+  .logo .clip.fish:nth-child(17) {
     -webkit-clip-path: polygon(88% 78%, 72% 73%, 95% 53%); }
-  .logo .clip.white {
+  .logo .clip.orange:nth-child(1) {
+    background: #ff8b10; }
+  .logo .clip.orange:nth-child(2) {
+    background: #ff7b0a; }
+  .logo .clip.orange:nth-child(3) {
+    background: #ff7608; }
+  .logo .clip.orange:nth-child(4) {
+    background: #ff7106; }
+  .logo .clip.orange:nth-child(5) {
+    background: #ff6c04; }
+  .logo .clip.orange:nth-child(6) {
+    background: #fc5500; }
+  .logo .clip.orange:nth-child(7) {
+    background: #ff6301; }
+  .logo .clip.orange:nth-child(8) {
+    background: #fd5901; }
+  .logo .clip.orange:nth-child(9) {
+    background: #ff6a04; }
+  .logo .clip.orange:nth-child(10) {
+    background: #ff6a05; }
+  .logo .clip.orange:nth-child(11) {
+    background: #ff7c0a; }
+  .logo .clip.orange:nth-child(12) {
+    background: #fe7e0c; }
+  .logo .clip.orange:nth-child(13) {
+    background: #ff890f; }
+  .logo .clip.orange:nth-child(14) {
+    background: #fe840e; }
+  .logo .clip.orange:nth-child(15) {
+    background: #fe7208; }
+  .logo .clip.orange:nth-child(16) {
+    background: #ff6b04; }
+  .logo .clip.orange:nth-child(17) {
+    background: #fc5601; }
+  .logo .clip.green:nth-child(1) {
+    background: #84d51b; }
+  .logo .clip.green:nth-child(2) {
+    background: #7fd015; }
+  .logo .clip.green:nth-child(3) {
+    background: #7ed015; }
+  .logo .clip.green:nth-child(4) {
+    background: #77c907; }
+  .logo .clip.green:nth-child(5) {
+    background: #6fc307; }
+  .logo .clip.green:nth-child(6) {
+    background: #61b501; }
+  .logo .clip.green:nth-child(7) {
+    background: #71c406; }
+  .logo .clip.green:nth-child(8) {
+    background: #65ba03; }
+  .logo .clip.green:nth-child(9) {
+    background: #75c70a; }
+  .logo .clip.green:nth-child(10) {
+    background: #74c60a; }
+  .logo .clip.green:nth-child(11) {
+    background: #7ccd12; }
+  .logo .clip.green:nth-child(12) {
+    background: #7ccd12; }
+  .logo .clip.green:nth-child(13) {
+    background: #7ccd12; }
+  .logo .clip.green:nth-child(14) {
+    background: #7ccd12; }
+  .logo .clip.green:nth-child(15) {
+    background: #6cc00b; }
+  .logo .clip.green:nth-child(16) {
+    background: #75c80b; }
+  .logo .clip.green:nth-child(17) {
+    background: #65ba04; }
+  .logo .clip.fish.chip:nth-child(1) {
+    -webkit-clip-path: polygon(24% 34%, 26% 29%, 30% 29%); }
+  .logo .clip.fish.chip:nth-child(2) {
+    -webkit-clip-path: polygon(29% 51%, 31% 85%, 37% 42%); }
+  .logo .clip.fish.chip:nth-child(3) {
+    -webkit-clip-path: polygon(17% 63%, 33% 65%, 16% 67%); }
+  .logo .clip.fish.chip:nth-child(4) {
+    -webkit-clip-path: polygon(17% 111%, 23% 118%, 17% 75%); }
+  .logo .clip.fish.chip:nth-child(5) {
+    -webkit-clip-path: polygon(25% 176%, 30% 101%, 25% 77%); }
+  .logo .clip.fish.chip:nth-child(6) {
+    -webkit-clip-path: polygon(63% 200%, 51% 157%, 70% 97%); }
+  .logo .clip.fish.chip:nth-child(7) {
+    -webkit-clip-path: polygon(75% 121%, 67% 92%, 50% 105%); }
+  .logo .clip.fish.chip:nth-child(8) {
+    -webkit-clip-path: polygon(69% 99%, 83% 110%, 99% 149%); }
+  .logo .clip.fish.chip:nth-child(9) {
+    -webkit-clip-path: polygon(66% 95%, 81% 140%, 65% 98%); }
+  .logo .clip.fish.chip:nth-child(10) {
+    -webkit-clip-path: polygon(126% 60%, 116% 58%, 82% 62%); }
+  .logo .clip.fish.chip:nth-child(11) {
+    -webkit-clip-path: polygon(62% 49%, 59% 44%, 80% 41%); }
+  .logo .clip.fish.chip:nth-child(12) {
+    -webkit-clip-path: polygon(68% 41%, 66% 28%, 109% 30%); }
+  .logo .clip.fish.chip:nth-child(13) {
+    -webkit-clip-path: polygon(61% 34%, 51% 20%, 61% 21%); }
+  .logo .clip.fish.chip:nth-child(14) {
+    -webkit-clip-path: polygon(70% 13%, 81% 11%, 103% 14%); }
+  .logo .clip.fish.chip:nth-child(15) {
+    -webkit-clip-path: polygon(96% 57%, 176% 41%, 110% 70%); }
+  .logo .clip.fish.chip:nth-child(16) {
+    -webkit-clip-path: polygon(99% 61%, 105% 68%, 145% 55%); }
+  .logo .clip.fish.chip:nth-child(17) {
+    -webkit-clip-path: polygon(86% 83%, 123% 87%, 143% 84%); }
+  .logo .clip {
+    -webkit-transition: -webkit-clip-path ease-out .5s,background ease-out .5s; }
+  .logo .clip.fish.white {
     background: linear-gradient(to bottom, #fff, #ffdc91);
     -webkit-clip-path: polygon(26% 15%, 39% 31%, 39% 55%, 27% 92%, 40% 97%, 40% 75%, 46% 63%, 50% 48%, 46% 29%, 37% 11%, 26% 15%); }
-  .logo .clip.eye {
+  .logo .clip.fish.eye {
     background: #fff;
     -webkit-clip-path: circle(11% at 20% 47%); }
-  .logo .clip.sight {
+  .logo .clip.fish.sight {
     background: #000;
     -webkit-clip-path: circle(5.5% at 16% 47%); }
-  .logo .clip.shiny {
+  .logo .clip.fish.shiny {
     background: #fff;
     -webkit-clip-path: circle(1.5% at 14.5% 46.5%); }
+  .logo .clip.white.chip, .logo .clip.chip.eye, .logo .clip.chip.sight, .logo .clip.chip.shiny {
+    background: rgba(255, 255, 255, 0); }
 
 @-webkit-keyframes cloudy {
   50% {

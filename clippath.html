@@ -13,37 +13,70 @@
 	  <div class="inset"></div>
 	  <div class="heart"></div>
 	</section>
+	  <button id="change">碎片化</button>
+	  <button id="color">变色</button>
+	  <button id="combo">美少鱼变身</button>
 	<section class="logo">
 	  <div class="fish">
-	    <div class="eye">
-	      <div class="sight">
-	        <div class="shiny"></div>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="fish">
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip"></div>
-	  	<div class="clip white"></div>
-	  	<div class="clip eye"></div>
-	  	<div class="clip sight"></div>
-	  	<div class="clip shiny"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange"></div>
+	  	<div class="clip fish orange white"></div>
+	  	<div class="clip fish orange eye"></div>
+	  	<div class="clip fish orange sight"></div>
+	  	<div class="clip fish orange shiny"></div>
 	  </div>
 	</section>
+	<script>
+	var clip = document.querySelectorAll('.clip')
+	var button1  = document.getElementById('change');
+	var button2  = document.getElementById('color');
+	var button3 = document.getElementById('combo');
+	function chip (argument) {
+		for(var length = clip.length;length--;){
+			if(clip[length].className.indexOf('chip')!==-1){
+				clip[length].className = clip[length].className.replace(' chip','');
+			}else{
+				clip[length].className+=' chip'
+			}
+		}
+	}
+	function changeColor () {
+			for(var length = clip.length;length--;){
+				if(clip[length].className.indexOf('green')!==-1){
+					clip[length].className = clip[length].className.replace('green','orange');
+				}else{
+					clip[length].className = clip[length].className.replace('orange','green');
+				}
+			}
+		}
+	button1.addEventListener('click',chip);
+	button2.addEventListener('click',changeColor);
+	button3.addEventListener('click',function () {
+		for(var length = clip.length;length--;){
+			clip[length].className = clip[length].className.replace(' chip','');
+		}
+		setTimeout(function(){
+			chip();
+			setTimeout(function(){
+				changeColor();chip();
+			},500)
+		},500);
+	});
+	</script>
 </body>
 </html>
