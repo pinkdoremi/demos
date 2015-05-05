@@ -54,6 +54,7 @@ $imgUrl: "../../img/clippath/view.jpg";
   @for $i from 1 through 17{
     .clip.fish:nth-child(#{$i}){
       -webkit-clip-path: polygon(nth($trai,$i));
+      -webkit-transition-delay:$i*20ms;
     }
   }
   @for $i from 1 through 17{
@@ -92,7 +93,7 @@ $imgUrl: "../../img/clippath/view.jpg";
     }
   }
   .clip{
-    -webkit-transition:-webkit-clip-path ease-out .5s,background ease-out .5s;
+    -webkit-transition:-webkit-clip-path ease .5s,background ease .5s;
   }
   .clip.fish.white{
     background:linear-gradient(to bottom,#fff,#ffdc91);
