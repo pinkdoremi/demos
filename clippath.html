@@ -6,21 +6,14 @@
 	<link rel="stylesheet" href="style/css/clip-path.css">
 </head>
 <body>
-	  <button id="step">下一步</button>
-	  <button id="change">碎片化</button>
-	  <button id="color">变色</button>
-	  <button id="combo">美少鱼变身</button>
 	<section class="demos">
-	  <div class="triangle" style="display:none"></div>
-	  <div class="circle" style="display:none"></div>
-	  <div class="ellipse" style="display:none"></div>
-	  <div class="inset" style="display:none"></div>
-	  <div class="heart" style="display:none"></div>
+	  <div class="triangle"></div>
+	  <div class="circle"></div>
+	  <div class="ellipse"></div>
+	  <div class="inset"></div>
+	  <div class="heart"></div>
 	</section>
 	<section class="logo">
-<!-- 	  <div style="display:none">
-	  	<img src="img/clippath/fish.bmp" alt="">
-	  </div> -->
 	  <div class="fish" style="display:none">
 	  	<div class="clip fish orange"></div>
 	  	<div class="clip fish orange"></div>
@@ -45,9 +38,13 @@
 	  	<div class="clip fish orange shiny"></div>
 	  </div>
 	</section>
+		  <button id="step">看鱼</button>
+	  <button id="change">碎片化</button>
+	  <button id="color">变色</button>
+	  <button id="combo">美少鱼变身</button>
 	<script>
 	var clip = document.querySelectorAll('.clip')
-	var show = document.querySelectorAll('section > div')
+	var fish = document.getElementById('fish')
 	var button1  = document.getElementById('change');
 	var button2  = document.getElementById('color');
 	var button3 = document.getElementById('combo');
@@ -80,12 +77,12 @@
 			chip();
 			setTimeout(function(){
 				changeColor();chip();
-			},500)
+			},1000)
 		},500);
 	});
 	var i = 0;
 	button4.addEventListener('click',function () {
-		show[i++].style.display = 'block';
+		fish.style.display = 'block';
 	});
 	</script>
 </body>
