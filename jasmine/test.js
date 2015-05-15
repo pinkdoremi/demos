@@ -145,7 +145,31 @@ describe("与首页国内相关的切换", function() {
 		citySelector.reset()
 		expect(true).toEqual(canRefreshIndex(locationInfo,oldSelection) && !isSameCity(orginLocation,locationInfo));
 		expect('无锡').toEqual(citySelector.getCurrentSelectCity().selectCityName);
-		expect('苏州').toEqual(citySelector.getCurrentSelectCity().cityName);
+		expect('苏州').toEqual(citySelector.getLocationName());
+	});
+	it("发现选择苏州", function() {
+		data = {
+			cName: '苏州',
+			extend: {
+				cId: 226
+			}
+		};
+		citySelector.executeCityChoose(data);
+		expect('苏州').toEqual(citySelector.getCurrentSelectCity().selectCityName);
+		expect('苏州').toEqual(citySelector.getLocationName());
+		expect(data.cName).toEqual(citySelector.getCurrentCityName());
+	});
+	it("发现选择无锡", function() {
+		data = {
+			cName: '无锡',
+			extend: {
+				cId: 226
+			}
+		};
+		citySelector.executeCityChoose(data);
+		expect('无锡').toEqual(citySelector.getCurrentSelectCity().selectCityName);
+		expect('苏州').toEqual(citySelector.getLocationName());
+		expect(data.cName).toEqual(citySelector.getCurrentCityName());
 	});
 });
 describe("与首页相关的定位", function() {

@@ -148,10 +148,13 @@ function CitySelector() {
         getCityInfo:getCityInfo,
         getLocationName:getLocationName,
         reset:function(){
-            var cityInfo = getCityInfo(JSON.parse(localStorage.discover_locationInfo));
-            setCurrentSelectCity();
+            var locationInfo = JSON.parse(localStorage.discover_locationInfo);
+            if(locationInfo.selectCityName){
+                //则国内
+                locationInfo.countryCode = "CN";
+            }
+            setCurrentSelectCity(locationInfo);
             setCurrentCityName();
-            getCurrentSelectCity();
             getCurrentCityName();
         },
         showCityListWithLocateName: function() {
@@ -160,10 +163,18 @@ function CitySelector() {
         executeCityChoose: function(data) {
             //先确认选择的城市是否是当前城市
             if(!isCurrentCity(data.cName)){
-                var cityInfo = getCityInfo(isLocateCity(data)?JSON.parse(localStorage.discover_locationInfo):data);
-                setCurrentSelectCity(cityInfo);
-                setCurrentCityName(data.cName);
-                return data;
+                    var cityInfo;
+                    if(isLocateCity(data)){
+                        var locationInfo = JSON.parse(localStorage.discover_locationInfo);
+                        locationInfo.selectCityName = locationInfo.cityName;
+                        locationInfo.selectCityId = locationInfo.cityId;
+                        cityInfo = getCityInfo(locationInfo);
+                    }else{
+                        cityInfo = getCityInfo(data);
+                    }
+                    setCurrentSelectCity(cityInfo);
+                    setCurrentCityName(data.cName);
+                    return data;
             }
             return null;
         },
@@ -209,14 +220,10 @@ function canRefreshIndex(newLoc,oldLoc){
     }
 }
 function isSameCity(one,two){
-    if(one.countryCode!==two.countryCode){
-        return false;
+    if(one.selectCityName === two.selectCityName && !one.selectCityName){
+        return one.destName === two.destName;
     }else{
-        if(one.countryCode == 'CN'){
-            return one.selectCityName === two.selectCityName;
-        }else{
-            return one.destName === two.destName;
-        }
+        return one.selectCityName === two.selectCityName;
     }
 }
 function locateChange(one,two){
