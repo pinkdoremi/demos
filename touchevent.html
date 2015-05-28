@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<title>touch event</title>
+</head>
+<body style="height:2000px">
+	<p>move: <span id="move">0</span></p>
+	<button id="showmove">显示move</button>
+	<p>scroll: <span id="scroll">0</span></p>
+	<button id="showscroll">显示scroll</button>
+	<div id="touchpad" style="border:1px solid black;width:200px;height:200px;">
+		
+	</div>
+	<script>
+	var pad = document.getElementById('touchpad');
+	var x,y;
+	document.getElementById('touchpad').addEventListener('touchstart',function(e){
+		x = e.touches[0].pageX;
+		y = e.touches[0].pageY;
+	});
+	document.getElementById('touchpad').addEventListener('touchmove',function(e){
+
+		pad.style.webkitTransform = 'translate('+(e.touches[0].pageX-x)+'px,'+(e.touches[0].pageY-y)+'px)';
+		console.log('translate('+(e.touches[0].pageX-x)+'px,'+(e.touches[0].pageY-y)+'px)')
+		e.preventDefault();
+	});
+
+	var move = 0;
+	document.addEventListener('touchmove',function(){
+		move++;
+	});
+	document.getElementById('showmove').addEventListener('click',function(){
+		document.getElementById('move').innerHTML = move;
+	})
+	var scroll = 0;
+	document.addEventListener('scroll',function(){
+		scroll++;
+		// document.getElementById('scroll').innerHTML = scroll;
+	});
+	document.getElementById('showscroll').addEventListener('click',function(){
+		document.getElementById('scroll').innerHTML = scroll;
+	})
+	</script>
+</body>
+</html>
