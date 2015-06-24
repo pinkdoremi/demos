@@ -4,62 +4,80 @@
 	<meta charset="UTF-8">
 	<title>Image Test Demoes</title>
 	<script src="../js/imagetest/checkfeature.js"></script>
+	<script src="../js/templateEngine_test/mustache.min.js"></script>
 	<style>
-	.svgbg{
-		width: 100%;
-		height: 100vw;
-		background: url(../img/imageTest/kiwi.svg) no-repeat;
-		background-size: contain;
+		body{
+			background:rgb(129, 149, 161);
 		}
-	.kiwi:hover{
-		fill:pink;
-	}
-	.ground:hover{
-		filter: url(#pictureFilter);
-	}
-	.logo{
-		width: 100%;
-		height: 100vw;
-	}
+		.svgbg{
+			width: 100px;
+			height: 100px;
+			background: url(../img/imageTest/kiwi.svg) no-repeat;
+			background-size: contain;
+			}
+		.kiwi:hover{
+			fill:pink;
+		}
+		.ground:hover{
+			filter: url(#pictureFilter);
+		}
+		.logo{
+			width: 100px;
+			height: 100px;
+		}
+		.demo .img{
+			float:left;
+		}
+		.demo:after{
+			content:' ';
+			clear:both;
+			display: block;
+			height: 0px;
+			visibility: hidden;
+		}
+		.demo .title{
+			font-size: 20px;
+			font-weight: bold;
+		}
+		li{
+			list-style: none;
+		}
 	</style>
 </head>
 <body>
 <nav class="top">
 	<span>webp</span>
 </nav>
-<section class="webp">
+<section class="webp" id="webpdemo">
 	<ul class="compatibility">当前浏览器的兼容性：</ul>
-	<button id="compateWebp">兼容webp有损压缩</button>
-	<ul>
-		<li>
-			<p>原图91.4KB</p>
-			<img src="../img/imageTest/demoPNG.png" width="100%">
+	{{#files}}
+	<ul class="demo">
+		<p class="title">{{title}}</p>
+		<li class="img">
+			<p>原图</p>
+			<img src="{{sourceDirName}}{{basename}}" width="200px">
 		</li>
-		<li>
-			<p>无损压缩71.8KB</p>
-			<img src="../img/imageTest/demoWEBPLossless.webp" width="100%">
+		{{#demoTypes}}
+		<li class="img">
+			<p>{{desc}}</p>
+			<img src="{{outputDirName}}{{filename}}{{filenameAdd}}.webp" width="200px">
 		</li>
-		<li>
-			<p>70压缩14.8KB</p>
-			<img src="../img/imageTest/demoWEBP70Q.webp" width="100%">
-		</li>
+		{{/demoTypes}}
 	</ul>
+	{{/files}}
 </section>
 <section class="svg">
-	<ul>
-		<li>
-			<p>svg as img 2.34KB ie8+ Android2.3+</p>
-			<img src="../img/imageTest/kiwi.svg" width="100%">
-			<p>自动兼容</p>
-			<img src="../img/imageTest/kiwi.svg" onerror="this.onerror=null; this.src='../img/imageTest/OpacityDemoPNG.png'" width="100%">
+	<ul class="demo">
+		<li class="img">
+			<p>img 2.34KB</p>
+			<img src="../img/imageTest/kiwi.svg" width="100px">
 		</li>
-		<li>
-			<p>svg as background-image ie8+ Android2.3+</p>
+		<li class="img">
+			<p>background</p>
 			<div class="svgbg"></div>
 		</li>
-		<p>上面两种都不能操作svg内部结构</p>
-		<li>
-			<p>inline svg ie8+ Android2.3+</p>
+		<li class="img">
+			<p>inline svg</p>
 			<div>
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				   width="612px" height="502.174px" viewBox="0 65.326 612 502.174" enable-background="new 0 65.326 612 502.174"
@@ -88,14 +106,16 @@
 				</svg>
 			</div>
 		</li>
-		<li>
-			<p>object svg ie8+ Android2.3+ 不支持外部的css操作内部，只能内嵌css</p>
+		<li class="img">
+			<p>object svg</p>
 			<object type="image/svg+xml" data="../img/imageTest/kiwi.svg" class="logo">
 			</object>
 		</li>
-		<li>
-			<p>dataURI</p>
-			<img src="data:image/svg+xml;base64,[data]">
+		<li class="img">
+			<p>base64</p>
+			<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNjEycHgiIGhlaWdodD0iNTAyLjE3NHB4IiB2aWV3Qm94PSIwIDY1LjMyNiA2MTIgNTAyLjE3NCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDY1LjMyNiA2MTIgNTAyLjE3NCINCgkgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8ZWxsaXBzZSBmaWxsPSIjQzZDNkM2IiBjeD0iMjgzLjUiIGN5PSI0ODcuNSIgcng9IjI1OSIgcnk9IjgwIi8+DQo8cGF0aCBpZD0iYmlyZCIgZD0iTTIxMC4zMzMsNjUuMzMxQzEwNC4zNjcsNjYuMTA1LTEyLjM0OSwxNTAuNjM3LDEuMDU2LDI3Ni40NDljNC4zMDMsNDAuMzkzLDE4LjUzMyw2My43MDQsNTIuMTcxLDc5LjAzDQoJYzM2LjMwNywxNi41NDQsNTcuMDIyLDU0LjU1Niw1MC40MDYsMTEyLjk1NGMtOS45MzUsNC44OC0xNy40MDUsMTEuMDMxLTE5LjEzMiwyMC4wMTVjNy41MzEtMC4xNywxNC45NDMtMC4zMTIsMjIuNTksNC4zNDENCgljMjAuMzMzLDEyLjM3NSwzMS4yOTYsMjcuMzYzLDQyLjk3OSw1MS43MmMxLjcxNCwzLjU3Miw4LjE5MiwyLjg0OSw4LjMxMi0zLjA3OGMwLjE3LTguNDY3LTEuODU2LTE3LjQ1NC01LjIyNi0yNi45MzMNCgljLTIuOTU1LTguMzEzLDMuMDU5LTcuOTg1LDYuOTE3LTYuMTA2YzYuMzk5LDMuMTE1LDE2LjMzNCw5LjQzLDMwLjM5LDEzLjA5OGM1LjM5MiwxLjQwNyw1Ljk5NS0zLjg3Nyw1LjIyNC02Ljk5MQ0KCWMtMS44NjQtNy41MjItMTEuMDA5LTEwLjg2Mi0yNC41MTktMTkuMjI5Yy00LjgyLTIuOTg0LTAuOTI3LTkuNzM2LDUuMTY4LTguMzUxbDIwLjIzNCwyLjQxNWMzLjM1OSwwLjc2Myw0LjU1NS02LjExNCwwLjg4Mi03Ljg3NQ0KCWMtMTQuMTk4LTYuODA0LTI4Ljg5Ny0xMC4wOTgtNTMuODY0LTcuNzk5Yy0xMS42MTctMjkuMjY1LTI5LjgxMS02MS42MTctMTUuNjc0LTgxLjY4MWMxMi42MzktMTcuOTM4LDMxLjIxNi0yMC43NCwzOS4xNDcsNDMuNDg5DQoJYy01LjAwMiwzLjEwNy0xMS4yMTUsNS4wMzEtMTEuMzMyLDEzLjAyNGM3LjIwMS0yLjg0NSwxMS4yMDctMS4zOTksMTQuNzkxLDBjMTcuOTEyLDYuOTk4LDM1LjQ2MiwyMS44MjYsNTIuOTgyLDM3LjMwOQ0KCWMzLjczOSwzLjMwMyw4LjQxMy0xLjcxOCw2Ljk5MS02LjAzNGMtMi4xMzgtNi40OTQtOC4wNTMtMTAuNjU5LTE0Ljc5MS0yMC4wMTZjLTMuMjM5LTQuNDk1LDUuMDMtNy4wNDUsMTAuODg2LTYuODc2DQoJYzEzLjg0OSwwLjM5NiwyMi44ODYsOC4yNjgsMzUuMTc3LDExLjIxOGM0LjQ4MywxLjA3Niw5Ljc0MS0xLjk2NCw2LjkxNy02LjkxN2MtMy40NzItNi4wODUtMTMuMDE1LTkuMTI0LTE5LjE4LTEzLjQxMw0KCWMtNC4zNTctMy4wMjktMy4wMjUtNy4xMzIsMi42OTctNi42MDJjMy45MDUsMC4zNjEsOC40NzgsMi4yNzEsMTMuOTA4LDEuNzY3YzkuOTQ2LTAuOTI1LDcuNzE3LTcuMTY5LTAuODgzLTkuNTY2DQoJYy0xOS4wMzYtNS4zMDQtMzkuODkxLTYuMzExLTYxLjY2NS01LjIyNWMtNDMuODM3LTguMzU4LTMxLjU1NC04NC44ODcsMC05MC4zNjNjMjkuNTcxLTUuMTMyLDYyLjk2Ni0xMy4zMzksOTkuOTI4LTMyLjE1Ng0KCWMzMi42NjgtNS40MjksNjQuODM1LTEyLjQ0Niw5Mi45MzktMzMuODVjNDguMTA2LTE0LjQ2OSwxMTEuOTAzLDE2LjExMywyMDQuMjQxLDE0OS42OTVjMy45MjYsNS42ODEsMTUuODE5LDkuOTQsOS41MjQtNi4zNTENCgljLTE1Ljg5My00MS4xMjUtNjguMTc2LTkzLjMyOC05Mi4xMy0xMzIuMDg1Yy0yNC41ODEtMzkuNzc0LTE0LjM0LTYxLjI0My0zOS45NTctOTEuMjQ3DQoJYy0yMS4zMjYtMjQuOTc4LTQ3LjUwMi0yNS44MDMtNzcuMzM5LTE3LjM2NWMtMjMuNDYxLDYuNjM0LTM5LjIzNC03LjExNy01Mi45OC0zMS4yNzNDMzE4LjQyLDg3LjUyNSwyNjUuODM4LDY0LjkyNywyMTAuMzMzLDY1LjMzMQ0KCXogTTQ0NS43MzEsMjAzLjAxYzYuMTIsMCwxMS4xMTIsNC45MTksMTEuMTEyLDExLjAzOGMwLDYuMTE5LTQuOTk0LDExLjExMS0xMS4xMTIsMTEuMTExcy0xMS4wMzgtNC45OTQtMTEuMDM4LTExLjExMQ0KCUM0MzQuNjkzLDIwNy45MjksNDM5LjYxMywyMDMuMDEsNDQ1LjczMSwyMDMuMDF6Ii8+DQo8L3N2Zz4NCg==" width="100"/>
+
+
 		</li>
 	</ul>
 </section>
@@ -114,27 +134,70 @@
 		li.innerText = feature+':'+result;
 		document.querySelector('.webp .compatibility').appendChild(li);
 		webpCompatibility[feature] = result;
-	}
-	document.getElementById('compateWebp').addEventListener('click',function(){
+		if(feature === 'lossy' && !result){
 			var js = document.createElement('script');
-			js.src='../js/imagetest/webpjs-0.2.0.min.js';
+			var startTime = new Date;
+			js.onload = function(){
+				var jsTime = new Date - startTime;
+			}
+			js.src='../js/imagetest/webpjs-0.0.2.min.js';
 			document.body.appendChild(js);
 			webpCompatibility['lossy'] = true;
-	})
+		}
+	}
 </script>
 <script>
-	var images = {
-		dirname:'../imageTest/',
-		demoFiles:[{
-			origin:'demoPNG.png',
-			cWebps:['demoWEBP100Q.webp','demoWEBP70Q.webp','demoWEBP90Q.webp','demoWEBPDefault.webp','demoWEBPLossless.webp'],
-			dWebps:['demoPNGFromWEBP.png']
+	var webps = {
+		sourceDirName:'../img/imageTest/source/',
+		outputDirName:'../img/imageTest/output/',
+		files:[{
+			basename:'jpg.jpg',
+			filename:'jpg',
+			title:'无损JPG41kb'
 		},{
-			origin:'OpacityDemoPNG.png',
-			cWebps:['OpacityDemoWEBP100Q.webp','OpacityDemoWEBP70Q.webp','OpacityDemoWEBP90Q.webp','OpacityDemoWEBPDefault.webp','OpacityDemoWEBPLossless.webp','OpacityDemoWEBPLossless.webp'],
-			dWebps:['OpacityDemoPNGFromWEBP.png']
-		}]
+			filename:'png',
+			basename:'png.png',
+			title:'无损PNG21kb'
+		},{
+			basename:'pnga.png',
+			filename:'pnga',
+			title:'透明PNG6kb'
+		}],
+		demoTypes:[
+			{
+				desc:'有损65',
+				filenameAdd:'65Q'
+			},
+			{
+				desc:'有损75',
+				filenameAdd:'75Q'
+			},
+			{
+				desc:'有损80',
+				filenameAdd:'80Q'
+			},
+			{
+				desc:'有损85',
+				filenameAdd:'85Q'
+			},
+			{
+				desc:'有损90',
+				filenameAdd:'90Q'
+			},
+			{
+				desc:'有损95',
+				filenameAdd:'95Q'
+			},
+			{
+				desc:'有损100',
+				filenameAdd:'100Q'
+			},
+			{
+				desc:'无损',
+				filenameAdd:'lossless'
+			}]
 	}
+	document.getElementById('webpdemo').innerHTML = Mustache.render(document.getElementById('webpdemo').innerHTML, webps);
 </script>
 </body>
 </html>
