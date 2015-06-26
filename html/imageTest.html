@@ -50,21 +50,23 @@
 </nav>
 <section class="webp" id="webpdemo">
 	<ul class="compatibility">当前浏览器的兼容性：</ul>
-	{{#files}}
+	{{#images}}
 	<ul class="demo">
-		<p class="title">{{title}}</p>
+		<p class="title">{{filename}}</p>
 		<li class="img">
-			<p>原图</p>
-			<img src="{{sourceDirName}}{{basename}}" width="200px">
+			<p>{{quality}}</p>
+			<p>{{format}} {{size}}</p>
+			<img src="{{path}}" width="200px">
 		</li>
-		{{#demoTypes}}
+		{{#encodeImgs}}
 		<li class="img">
-			<p>{{desc}}</p>
-			<img src="{{outputDirName}}{{filename}}{{filenameAdd}}.webp" width="200px">
+			<p>{{quality}}</p>
+			<p>{{format}} {{size}}</p>
+			<img src="{{path}}" width="200px">
 		</li>
-		{{/demoTypes}}
+		{{/encodeImgs}}
 	</ul>
-	{{/files}}
+	{{/images}}
 </section>
 <section class="svg">
 	<ul class="demo">
@@ -147,57 +149,23 @@
 	}
 </script>
 <script>
-	var webps = {
-		sourceDirName:'../img/imageTest/source/',
-		outputDirName:'../img/imageTest/output/',
-		files:[{
-			basename:'jpg.jpg',
-			filename:'jpg',
-			title:'无损JPG41kb'
-		},{
-			filename:'png',
-			basename:'png.png',
-			title:'无损PNG21kb'
-		},{
-			basename:'pnga.png',
-			filename:'pnga',
-			title:'透明PNG6kb'
-		}],
-		demoTypes:[
-			{
-				desc:'有损65',
-				filenameAdd:'65Q'
-			},
-			{
-				desc:'有损75',
-				filenameAdd:'75Q'
-			},
-			{
-				desc:'有损80',
-				filenameAdd:'80Q'
-			},
-			{
-				desc:'有损85',
-				filenameAdd:'85Q'
-			},
-			{
-				desc:'有损90',
-				filenameAdd:'90Q'
-			},
-			{
-				desc:'有损95',
-				filenameAdd:'95Q'
-			},
-			{
-				desc:'有损100',
-				filenameAdd:'100Q'
-			},
-			{
-				desc:'无损',
-				filenameAdd:'lossless'
-			}]
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST","http://10.1.201.36:8008/images");
+	xhr.onreadystatechange = function () {
+		if(xhr.readyState === 4 && xhr.status === 200){
+			getDataRendered(JSON.parse(xhr.responseText));
+		}
 	}
-	document.getElementById('webpdemo').innerHTML = Mustache.render(document.getElementById('webpdemo').innerHTML, webps);
+	xhr.send();
+	function getDataRendered(data){
+		console.log(data)
+		var webps = {
+			sourceDirName:'../img/imageTest/source/',
+			outputDirName:'../img/imageTest/output/',
+			images:data.images
+		}
+		document.getElementById('webpdemo').innerHTML = Mustache.render(document.getElementById('webpdemo').innerHTML, webps);
+	}
 </script>
 </body>
 </html>
