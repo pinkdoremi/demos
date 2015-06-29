@@ -61,18 +61,18 @@ cmd.exec('sh encodeToWebp.sh',
 			}
 		});
 	})
+	server.on('request',function(request,response){
+		var url = require('url').parse(request.url);
+		if(url.pathname === '/images'){
+			response.writeHead(200,{
+				"Content-Type":"text/plain; charset=utf-8",
+				"Access-Control-Allow-Origin":"*"
+			});
+			response.write(JSON.stringify(result));
+			response.end();
+		}
+	})
 });
-server.on('request',function(request,response){
-	var url = require('url').parse(request.url);
-	if(url.pathname === '/images'){
-		response.writeHead(200,{
-			"Content-Type":"text/plain; charset=utf-8",
-			"Access-Control-Allow-Origin":"*"
-		});
-		response.write(JSON.stringify(result));
-		response.end();
-	}
-})
 function converSize(size){
 	return (size/1000).toFixed(2)+'KB';
 }

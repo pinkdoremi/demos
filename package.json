@@ -1,0 +1,24 @@
+{
+  "name": "demos",
+  "version": "0.0.0",
+  "description": "private",
+  "main": "run.js",
+  "scripts": {
+    "test": "run",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pinkdoremi/demos.git"
+  },
+  "keywords": [
+    "private",
+    "demo"
+  ],
+  "author": "xuehe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pinkdoremi/demos/issues"
+  },
+  "homepage": "https://github.com/pinkdoremi/demos"
+}
