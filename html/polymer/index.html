@@ -4,9 +4,16 @@
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="proto-element.html">
     <link rel="import" href="dom-element.html">
+    <link rel="import" href="messageBox.html">
   </head>
   <body>
     <proto-element></proto-element>
     <dom-element></dom-element>
+    <button id="alert">弹出提示框</button>
+    <script>
+    	document.getElementById('alert').addEventListener('click',function (argument) {
+			var el = new messageBox(1, '我是测试测试测试的话');
+    	})
+    </script>
   </body>
 </html>

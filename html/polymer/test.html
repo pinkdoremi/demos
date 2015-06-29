@@ -1,0 +1,22 @@
+<style>
+	
+</style>
+
+<messageBox id="msg">
+  <template>
+    <p>{{description}}</p>
+  </template>
+</messageBox>
+
+<script>
+  messageBox = Polymer({
+    is: "messageBox",
+    properties:{
+
+    },
+    factoryImpl:function constructor (buttonNum,description) {
+    	this.description = description;
+    	this.buttonNum = buttonNum;
+    }
+  });
+</script>
