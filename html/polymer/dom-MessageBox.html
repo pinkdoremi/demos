@@ -1,0 +1,59 @@
+<link rel="import"
+      href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="dom-MessageBox">
+  <template>
+    <p>{{description}}</p>
+		<div class="buttons">
+            <template is="dom-repeat" items="{{buttons}}" id="buttonList">
+    			<button type="button" name="button"
+                        on-click="handleClick">{{item.text}}</button>
+            </template>
+		</div>
+  </template>
+</dom-module>
+
+<script>
+  MessageBox = Polymer({
+    is: "dom-MessageBox",
+    factoryImpl:function constructor (description,buttons) {
+        var jsonObj;
+    	this.description = description;
+        this.buttons = buttons;
+        if(/tctravel/i.test(navigator.userAgent)){
+            this.cbId = 'bridge-cb-'+new Date;
+            jsonObj = {
+                "param":{
+                    "tagname":"dialog",
+                    "desc":this.description,
+                    "btnList":[]
+                },
+                "CBPluginName": "polymerCBs",
+                "CBTagName": this.cbId
+            }
+            buttons.forEach(function(item){
+                jsonObj.param.btnList.push({
+                    showText:each.text,
+                    tagname:each.id
+                });
+            });
+            window._tc_bridge_util.show_tips_dialog(jsonObj);
+        }else{
+            document.body.appendChild(this);
+        }
+        window.polymerCBs = window.polymerCBs || {};
+        window.polymerCBs[this.cbId] = function(data){
+            alert(JSON.stringify(data))
+            var button = {
+                id:data.tagname,
+            }
+        }
+    },
+    handleClick:function(e){
+        var button = this.$.buttonList.itemForElement(e.target);
+        this.parentNode.removeChild(this);
+        delete this;
+        button.callback(button);
+    }
+  });
+</script>

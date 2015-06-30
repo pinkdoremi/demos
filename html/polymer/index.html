@@ -4,16 +4,31 @@
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     <link rel="import" href="proto-element.html">
     <link rel="import" href="dom-element.html">
-    <link rel="import" href="messageBox.html">
+    <link rel="import" href="dom-MessageBox.html">
   </head>
   <body>
     <proto-element></proto-element>
     <dom-element></dom-element>
+    <dom-MessageBox></dom-MessageBox>
     <button id="alert">弹出提示框</button>
+    <div class="hello">
+    </div>
     <script>
     	document.getElementById('alert').addEventListener('click',function (argument) {
-			var el = new messageBox(1, '我是测试测试测试的话');
+			var el = new MessageBox('测试描述', [{
+                id:'id:Button 0',
+                text:'测试按钮1',
+                callback:buttonClick
+              },{
+                id:'id:Button 1',
+                text:'测试按钮2',
+                callback:buttonClick
+              }]);
     	})
+        function buttonClick(button){
+            alert('点击 ['+button.text+'] '+button.id);
+        }
     </script>
+    <script src="http://js.40017.cn/cn/min/??/touch/hb/c/bridge.1.3.0.js"></script>
   </body>
 </html>
