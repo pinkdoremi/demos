@@ -1,15 +1,85 @@
 <link rel="import"
       href="../../bower_components/polymer/polymer.html">
-
+<style>
+    dom-MessageBox{
+        position:fixed;
+        display: -webkit-box;
+        left:0;
+        top:0;
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+        -webkit-box-orient:horizontal;
+        -webkit-box-pack:center;
+        -webkit-box-align:center;
+        background: rgba(0,0,0,.4);
+        color:#333;
+    }
+    dom-MessageBox .msg-dialog{
+        border-radius: 6px;
+        width: 270px;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        outline: 0;
+        pointer-events: auto;
+        background-color: rgba(253,253,253,.95);
+        position: relative;
+    }
+    .msg-dialog .msg-description{
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        padding: 18px;
+        margin:0px;
+        font-size: 16px;
+        display: -webkit-box;
+        display: box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        -webkit-box-orient: vertical;
+        font-size:14px;
+    }
+    .msg-dialog .msg-buttons{
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        display: -webkit-box;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .msg-dialog .msg-buttons button:first-child{
+        border-bottom-left-radius: 6px;
+        background-image: none;
+    }
+    .msg-dialog .msg-buttons button:last-child{
+        border-bottom-right-radius: 6px;
+        background-image: none;
+    }
+    .msg-dialog .msg-buttons button{
+        display: block;
+        -webkit-box-flex: 1;
+        border: 0;
+        height: 42px;
+        line-height: 42px;
+        background: transparent;
+        color: #00a5e0;
+        text-align: center;
+        font-size: 16px;
+        border-right: 1px #c8c7cc solid;
+        width: 100%;
+        border-top: 1px solid #c8c7cc;
+    }
+</style>
 <dom-module id="dom-MessageBox">
-  <template>
-    <p>{{description}}</p>
-		<div class="buttons">
+  <template class="msg-modal">
+      <div class="msg-dialog">
+        <p class="msg-description">{{description}}</p>
+    	<div class="msg-buttons">
             <template is="dom-repeat" items="{{buttons}}" id="buttonList">
     			<button type="button" name="button"
                         on-click="handleClick">{{item.text}}</button>
             </template>
-		</div>
+    	</div>
+      </div>
   </template>
 </dom-module>
 
@@ -17,11 +87,12 @@
   MessageBox = Polymer({
     is: "dom-MessageBox",
     factoryImpl:function constructor (description,buttons) {
-        var jsonObj;
+        var jsonObj,me = this;
     	this.description = description;
         this.buttons = buttons;
-        if(/tctravel/i.test(navigator.userAgent)){
-            this.cbId = 'bridge-cb-'+new Date;
+        if(/tctravel/i.test(navigator.userAgent)) {
+            //客户端内部配置参数，设置回调
+            this.cbId = 'bridge-cb-'+(+new Date);
             jsonObj = {
                 "param":{
                     "tagname":"dialog",
@@ -31,22 +102,29 @@
                 "CBPluginName": "polymerCBs",
                 "CBTagName": this.cbId
             }
-            buttons.forEach(function(item){
+            this.buttons.forEach(function(item,index){
                 jsonObj.param.btnList.push({
-                    showText:each.text,
-                    tagname:each.id
+                    showText:item.text,
+                    tagname:item.id || index
                 });
             });
             window._tc_bridge_util.show_tips_dialog(jsonObj);
-        }else{
-            document.body.appendChild(this);
-        }
-        window.polymerCBs = window.polymerCBs || {};
-        window.polymerCBs[this.cbId] = function(data){
-            alert(JSON.stringify(data))
-            var button = {
-                id:data.tagname,
+            window.polymerCBs = window.polymerCBs || {};
+            window.polymerCBs[this.cbId] = function(data){
+                var tappedButton;
+                me.buttons.every(function(item,index){
+                    if(item.id == data.tagname || (!item.id && index == data.tagname)){
+                        tappedButton = item;
+                        tappedButton.callback(tappedButton);
+                        return false;
+                    }
+                    return true;
+                });
+                delete window.polymerCBs[this.cbId];
             }
+        }else{
+            //客户端外部添加dom元素
+            document.body.appendChild(this);
         }
     },
     handleClick:function(e){

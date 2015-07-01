@@ -9,10 +9,7 @@
   <body>
     <proto-element></proto-element>
     <dom-element></dom-element>
-    <dom-MessageBox></dom-MessageBox>
     <button id="alert">弹出提示框</button>
-    <div class="hello">
-    </div>
     <script>
     	document.getElementById('alert').addEventListener('click',function (argument) {
 			var el = new MessageBox('测试描述', [{
@@ -24,7 +21,7 @@
                 text:'测试按钮2',
                 callback:buttonClick
               }]);
-    	})
+    	});
         function buttonClick(button){
             alert('点击 ['+button.text+'] '+button.id);
         }
