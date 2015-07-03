@@ -15,7 +15,7 @@ page.open(url, function(status) {
     setInterval(function() {
         console.log('NowPrice is:' + page.evaluate(
             getLatestPrice));
-    }, 1000)
+    }, 3000)
 });
 
 function getLatestPrice() {
