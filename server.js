@@ -11,7 +11,7 @@ var result = {
 };
 console.log('openning the Server...')
 var server = new http.Server();
-server.listen(8008,'10.1.201.36');
+server.listen(8008,'10.1.201.195');
 console.log('server port:8008');
 console.log('start to encode images....')
 cmd.exec('sh encodeToWebp.sh',

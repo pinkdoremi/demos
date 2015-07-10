@@ -150,7 +150,7 @@
 </script>
 <script>
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST","http://10.1.201.36:8008/images");
+	xhr.open("POST","http://10.1.201.195:8008/images");
 	xhr.onreadystatechange = function () {
 		if(xhr.readyState === 4 && xhr.status === 200){
 			getDataRendered(JSON.parse(xhr.responseText));

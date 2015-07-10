@@ -20,7 +20,7 @@ page.open(url, function(status) {
 
 function getLatestPrice() {
     var res = '';
-    var doms = document.querySelectorAll('.currentInfo .stockDown');
+    var doms = document.querySelectorAll('.currentInfo');
     [].forEach.call(doms, function(item) {
         res += '\t' + item.textContent;
     });

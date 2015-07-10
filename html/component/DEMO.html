@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <link rel="stylesheet" type="text/css" href="http://css.40017.cn/cn/min/??/touch/public/tab/0.0.2/tab.css?v=2212">
+<style type="text/css">
+  .contenter ul{width: 100%;}
+  html .contenter ul li.nav {float: left; width:25%;border-bottom: 1px solid #ccc;padding: 2px 0 5px 0;text-align: center;}
+  .clearfix:after{content:".";display:block;clear:both;visibility:hidden;line-height:0;height:0;}* html .clearfix{zoom:1;}*:first-child + html .clearfix{zoom:1;}
+  .nav-active{color: #f60;}
+  .panel{width: 100%;height: 50px; text-align: center; background: #999;display: none;}
+  .con{padding: 10px;}
+  body .ui-tab .tab-adorn{
+    bottom: auto;
+    top:0;
+  }
+</style>
+  <script type="text/javascript" src="http://js.40017.cn/touch/cn/public/zepto.20140212.js?v=2014052301"></script>
+<script type="text/javascript" src="http://js.40017.cn/cn/min/??/touch/public/tab/0.0.2/tab.js"></script>
+<div class="contenter">
+  <ul class="clearfix">
+    <li class="nav" fg='1'>上海</li>
+    <li class="nav" fg='2'>背景</li>
+    <li class="nav" fg='3'>江苏</li>
+    <li class="nav" fg='4'>深圳</li>
+  </ul>
+  <div class="con">
+    <div class="panel" fg='1'>上海</div>
+    <div class="panel" fg='2'>背景</div>
+    <div class="panel" fg='3'>江苏</div>
+    <div class="panel" fg='4'>深圳</div>
+  </div>
+</div>
+<script type="text/javascript">
+     var dd = $.tab({
+              contenter: '.contenter',
+              nav:'.nav',
+              panel:'.panel',
+              rel:'fg',
+              adronMode :"top",
+              active:2,
+              clickFn:function(e){
+                if($(e).attr("fg") == 3){
+                  return false;
+                }
+              }
+            });
+//这里可以通过 dd.moveTo()脚本控制切换，不影响用户点击的切换
+</script>
+</body>
+</html>

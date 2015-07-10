@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scroller Demo</title>
+  <style>
+    .scroller{
+      width:200px;/*必须要固定宽*/
+      height:300px;/*必须要固定高*/
+      margin:20px;
+      padding:10px;
+      overflow:hidden;/*必须要隐藏多余的*/
+      border:1px solid #ccc;
+    }
+    .horizontal{
+      display: inline-block;/*让父级元素可以被撑开*/
+    }
+  </style>
+</head>
+<body>
+  <script src="../../js/zepto.js" charset="utf-8"></script>
+  <script src="../../js/components/scroll.js" charset="utf-8"></script>
+  <section>
+    <h1>垂直滚动</h1>
+    <div class="scroller demo1">
+      <div class="wrapper">
+        <h2>今天天气好</h2>
+        <p>修改自<a href="http://frozenui.github.io/frozenjs/ui/scroller/index.html">frozenUI</a></p>
+        <p>天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好</p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h1>水平滚动</h1>
+    <button id="scrollTo">scrollTo(-200,0)</button>
+    <button id="enable">enable</button>
+    <button id="disable">disable</button>
+    <button id="destroy">destroy</button>
+    <button id="refresh">添加一个元素，让宽度变更宽后需要调用refresh</button>
+    <button id="getComputedPosition">getComputedPosition</button>
+    <div class="scroller demo2">
+      <div class="wrapper horizontal">
+        <div class="toshow"style="background:red;width:2000px;height:20px;display:none"></div>
+        <h2>今天天气好</h2>
+        <p style="width:800px">天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好天气好</p>
+      </div>
+    </div>
+  </section>
+  <script type="text/javascript">
+    var scroll1 = new tc.Scroll('.scroller.demo1', {//最简单的垂直方向滚动
+           scrollY: true
+       });
+       scroll1.on('scroll',function(){
+         console.log(JSON.stringify(scroll1.getComputedPosition()));//滚动事件触发
+       })
+  </script>
+  <script type="text/javascript">
+    var scroll2 = new tc.Scroll('.scroller.demo2', {//水平方法滚动
+        scrollY: false,
+        scrollX: true,
+        bounce:false//反弹动画
+      });
+      $('#enable').on('tap click',function function_name(argument) {
+        scroll2.enable();//滑动到具体坐标
+      });
+      $('#scrollTo').on('tap click',function function_name(argument) {
+        scroll2.scrollTo(-200,0,500);//滑动到具体坐标(x,y,滑动时间)
+      });
+      $('#disable').on('tap click',function function_name(argument) {
+        scroll2.disable();//滑动到具体坐标
+      })
+      $('#destroy').on('tap click',function function_name(argument) {
+        scroll2.destroy();//去除所有的事件绑定，无法恢复。scroll对象没有删除，需要手动删除scroll对象。
+      })
+      $('#getComputedPosition').on('tap click',function function_name(argument) {
+        alert(JSON.stringify(scroll2.getComputedPosition()));//滑动到具体坐标
+      })
+      $('#refresh').on('tap click',function function_name(argument) {
+        $('.toshow').show();
+        scroll2.refresh();//滑动到具体坐标
+      })
+  </script>
+</body>
+</html>

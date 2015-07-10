@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tab Demo</title>
+  <style>
+    .tab{
+      width:280px;/*必须要固定宽*/
+      height:300px;/*必须要固定高*/
+      overflow-y:scroll;
+      overflow-x:hidden;/*宽度超过要隐藏*/
+    }
+    .nav{
+      width: 100%;
+      display:-webkit-box;
+      margin:0;
+      padding:0;
+      height: 44px;
+      border-bottom:1px solid #dcdcdc;
+    }
+    .nav > *{
+      -webkit-box-flex:1;
+      line-height: 44px;
+      text-align: center;
+      display: block;
+    }
+    .nav > .current{/*当前的类请务必要current类*/
+      color:#60b400;
+      border-bottom:2px solid #60b400;
+    }
+    .content{
+      display: -webkit-box;
+      margin:0;
+      padding:0;
+      overflow: hidden;/*防止短内容的那个页面出现滚动条*/
+    }
+    .content > *{
+      list-style:none;
+      -webkit-box-flex: 1;
+      width: 100%;
+      overflow: visible;
+    }
+  </style>
+</head>
+<body>
+  <script src="../../js/zepto.js" charset="utf-8"></script>
+  <script src="../../js/components/scroll.js" charset="utf-8"></script>
+  <section>
+    <section class="tab">
+      <ul class="nav">
+        <li>第一板块</li>
+        <li>第二</li>
+        <li>第三板块</li>
+      </ul>
+      <ul class="content">
+        <li>低等长度内容低等长度内容低等长度内容低等长度内容低等长度内容低等长度内容</li>
+        <li>中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容中等长度内容</li>
+        <li>高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容高等长度内容</li>
+      </ul>
+    </section>
+  </section>
+  <script type="text/javascript">
+      var tab = new tc.Scroll('.tab', {
+        role: 'tab',//必须
+        autoplay: false,//自动播放
+        interval: 3000//自动播放时间间隔
+      });
+      tab.on('beforeScrollStart',function(from,to){
+        console.log(from,to);
+      });
+      tab.on('scrollEnd',function(curPage){
+        console.log(curPage);
+      });
+      $('#enable').on('tap click',function function_name(argument) {
+        scroll2.enable();//滑动到具体坐标
+      });
+      $('#scrollTo').on('tap click',function function_name(argument) {
+        scroll2.scrollTo(-200,0,500);//滑动到具体坐标(x,y,滑动时间)
+      });
+      $('#disable').on('tap click',function function_name(argument) {
+        scroll2.disable();//滑动到具体坐标
+      })
+      $('#destroy').on('tap click',function function_name(argument) {
+        scroll2.destroy();//去除所有的事件绑定，无法恢复。scroll对象没有删除，需要手动删除scroll对象。
+      })
+      $('#getComputedPosition').on('tap click',function function_name(argument) {
+        alert(JSON.stringify(scroll2.getComputedPosition()));//滑动到具体坐标
+      })
+      $('#refresh').on('tap click',function function_name(argument) {
+        $('.toshow').show();
+        scroll2.refresh();//滑动到具体坐标
+      })
+  </script>
+</body>
+</html>
