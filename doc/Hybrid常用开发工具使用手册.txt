@@ -1,0 +1,89 @@
+#Hybrid常用开发工具使用手册
+
+###编辑器
+前端开发有很多很多编辑器，这里主要推荐2个。
+####[webstorm](http://www.jetbrains.com/webstorm/)
+WebStorm 是jetbrains公司旗下一款JavaScript 开发工具。被广大中国JS开发者誉为“Web前端开发神器”、“最强大的HTML5编辑器”、“最智能的JavaScript IDE”等。与IntelliJ IDEA同源，继承了IntelliJ IDEA强大的JS部分的功能
+[一次晨会分享](http://172.16.2.38/wp/?p=382)
+####[sublime](http://www.sublimetext.com/)
+sublime是一个插件社区非常活跃的轻量级的编辑器。
+[非官方文档](http://sublime-text-unofficial-documentation.readthedocs.org/)
+插件推荐文章
+1. [前端开发者需要的10个Sublime插件](http://web.jobbole.com/82177/)
+2. [页面制作之开发调试工具](http://web.jobbole.com/82342/)
+###[fiddler](http://www.telerik.com/fiddler)
+在windows平台上的抓包工具。
+[documention](http://docs.telerik.com/fiddler/KnowledgeBase/UIGuide#inspectors)
+mac请看这里[charles proxy](http://www.charlesproxy.com/)
+简单的使用方式是这样[简单使用手册](http://172.16.2.38/wp/?p=91)
+####模拟数据请求，返回
+有两种方式可以模拟数据。
+1. 使用断点
+2. 使用auto responce
+注意的是目前客户端使用了请求签名，我们自己造的假数据会不被读取。解决方法：
+长按客户端顶部的导航栏呼出debug工具。
+Android：认证方式 0
+iOS：开启混合不加密功能 开启
+[fiddler使用手册进阶版](http://www.cnblogs.com/forcertain/archive/2012/11/29/2795139.html)
+[无线QA处的fiddler技巧](http://172.16.2.38/qa/?p=162)
+####定位国外模拟
+在学会了以上两种模拟数据后，可以来模拟定位。
+首先在ios和Android的debug工具中可以模拟国外的定位。
+但是在ios和Android中的模拟定位的定位信息终究是假的。要真机模拟除了跑到某个经纬度城市去还有2个方法：
+
+1. 使用越狱后的工具（fake gps），更改客户端的经纬度。但是目前这个方法是行不通的，客户端好像做了什么奇怪的操作，读不到假数据。但是如果这个方法有朝一日行得通了，那会是最有效率最方便的方式。
+2. 非常不方便的方法，通过fiddler改response。
+
+Android替换一栏：
+
+1. 请求：`EXACT:http://loc.map.baidu.com/sdk.php`返回：`{"content":{"addr":"","bldg":"","floor":"","indoor":"1","loctp":"wf","point":{"x":"116.469953","y":"2.962493"},"radius":"75.677415","ssid":"65535"},"result":{"error":"161","time":"2015-04-07 21:06:02"}}`
+2. 请求：`regex:http://api.map.baidu.com/geocoder\?location=.*&output=json`
+返回：`http://api.map.baidu.com/geocoder?location=35.6894875,139.6917064&output=json`
+3. 请求：`http://maps.googleapis.com/maps/api/geocode/json`返回：`http://maps.googleapis.com/maps/api/geocode/json?latlng=35.6894875,139.6917064&sensor=true&language=en`
+
+iOS替换一览：
+
+1. 请求：`EXACT:http://gs-loc.apple.com:443`返回：`空`
+2. 安卓的2
+3. 安卓的3
+
+####打包模拟
+[请见模拟打包指南](http://172.16.2.38/hybrid/?p=722)
+####换线上、测试接口
+利用host映射：
+Tools->Host
+eg:
+`61.155.197.172:8008 tcmobileapi.17usoft.com`将线上接口映射成8008
+###[browser sync](http://www.browsersync.io/)
+UI调试利器，响应式调试利器。可以监听文件的修改，刷新页面。此外还可以操作同步。
+利用`npm install browser-sync`一键安装。
+安装后在希望的目录
+`browser-sync start --server --files="style/*.css,views/*.html"`打开服务器并且跟踪一些文件的改动。
+详细的指南：
+[响应式Web开发调试利器-Browser-Sync](http://www.tuicool.com/articles/JfQJvuY)
+
+###[weinre](http://people.apache.org/~pmuellr/weinre/docs/latest/)
+weinre可以在pc上调试到mobile上的页面，它拥有查看dom结构，修改样式，查看localStorage等等功能，为mobile建立一个chrome dev tool去调试。
+[使用指南](http://172.16.2.38/wp/?p=32)
+###safari in mac os
+如果用的是mac os并且有一台ios调试机的话，利用Safari的开发者工具可以直接调试真机：
+[Safari 前端开发调试 iOS 完美解决方案（iPhone/iTouch 等）](http://chon.io/blog/safari-ios-iphone-itouch-web-dev-inspector/)
+###chrome dev tool
+chrome的debug工具很牛X，大家都懂的。
+[官方教程](https://developer.chrome.com/devtools)
+###兼容性查询
+兼容性查询网站:
+[caniusep](http://caniuse.com/)
+[mobilehtml5](http://mobilehtml5.org/)
+###文档查询
+[MDN](https://developer.mozilla.org/en-US/docs/Web)
+[W3C](http://www.w3.org/)
+###gulp&grunt
+2个构建工具。
+gulp在一次晨会中有介绍过。[gulp](http://172.16.2.38/wp/?p=487)
+grunt也是非常流行的。[grunt中文网](http://www.gruntjs.net/)
+###清缓存
+iOS清缓存：我的->设置->清楚缓存->确定->退出
+Android清缓存：去应用程序中清除数据。如果是替换混合包，请再操作以上ios的流程一次。
+###客户端debug工具
+长按客户端顶部的导航栏，可以打开debug工具，里面的功能很多哦。
