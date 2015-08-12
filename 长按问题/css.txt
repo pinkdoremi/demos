@@ -1,0 +1,10 @@
+-webkit-touch-callout: <behavior>;
+<behavior>
+The touch callout behavior.
+default	Restore the default callout.
+none	The callout is disabled.
+inherit
+(-prefix-)user-select: none;
+(-prefix-)user-select: text;
+(-prefix-)user-select: all;
+(-prefix-)user-select: element;

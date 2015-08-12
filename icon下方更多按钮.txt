@@ -1,0 +1,5 @@
+background-clip: padding-box;
+        border-bottom-width: 7px;
+        -webkit-border-image: url(../img/line_zby_home_exercise.png) 14 0;
+        border-image: url(../img/line_zby_home_exercise.png) 14 0;
+        padding-bottom: 3px;

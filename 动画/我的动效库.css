@@ -1,0 +1,33 @@
+@-webkit-keyframes cloudy {
+	50% { -webkit-transform: translateY(-10px); transform: translateY(-10px); }
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes neon {
+  from {
+    box-shadow: 0 0 10px #fff inset,
+               0 0 20px  #fff inset,
+               0 0 30px  #fff inset,
+               0 0 40px  #B6FF00 inset,
+               0 0 70px  #B6FF00 inset,
+               0 0 80px  #B6FF00 inset,
+               0 0 100px #B6FF00 inset,
+               0 0 150px #B6FF00 inset;
+  }
+  to {
+    box-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 15px #fff,
+               0 0 20px #B6FF00,
+               0 0 35px #B6FF00,
+               0 0 40px #B6FF00,
+               0 0 50px #B6FF00,
+               0 0 75px #B6FF00;
+  }
+}

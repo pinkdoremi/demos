@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<title>Scroller</title>
+	<script src="../libs/angular/1.2.21/angular.js"></script>
+	<script src="../libs/ng-components/ng-infiniteScroll.js"></script>
+	<script src="../libs/zepto/1.1.4/zepto.min.js"></script>
+</head>
+<body>
+	<ul ng-controller="listCtrl" infinite-scroll="addMoreToList()" can-load="true">
+		<li ng-repeat="each in list track by $index">{{each}}</li>
+	</ul>
+	{{loadingState}}
+	<loader loading-text="jiazaiing..." loader-state="{{loadingState}}"></loader>
+	<script>
+		var app = angular.module('app',['infiniteScroll']);
+		var sumLine = 0;
+		app.controller('listCtrl', ['$scope', function ($scope){
+			function generateList(n){
+				var arr = [];
+				for(var i=n;i--;){
+					arr.push('just a line:) No.'+sumLine++);
+				}
+				return arr;
+			}
+			$scope.list = generateList(30);
+			$scope.addMoreToList = function(){
+				$scope.list = $scope.list.concat(generateList(30));
+			}
+			setTimeout(function(){
+				$scope.loadingState = 'loading';
+				$scope.$digest();
+			},2000)
+		}]);
+	</script>
+</body>
+</html>

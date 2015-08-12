@@ -1,0 +1,1 @@
+-webkit-gradient(linear,center top,center bottom,from(rgba(0,0,0,0)), to(rgba(0,0,0,0.5))) no-repeat;

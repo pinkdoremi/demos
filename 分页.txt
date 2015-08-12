@@ -1,0 +1,8 @@
+$(window).on("scroll", function() {
+    if ($(document).height() - $(window).height() == $(window).scrollTop()) {
+        if (THIS.isLoading) {
+            return false;
+        }
+        THIS.getData();
+    }
+});
